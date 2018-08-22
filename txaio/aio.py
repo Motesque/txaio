@@ -464,7 +464,8 @@ class _AsyncioApi(object):
         return future.done()
 
     def resolve(self, future, result=None):
-        future.set_result(result)
+        if not future.cancelled():
+            future.set_result(result)
 
     def reject(self, future, error=None):
         if error is None:
