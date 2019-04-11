@@ -515,8 +515,6 @@ class _AsyncioApi(object):
                 res = f.result()
                 if callback:
                     callback(res)
-            except (asyncio.CancelledError, concurrent.futures._base.CancelledError):
-                pass 
             except Exception:
                 if errback:
                     errback(create_failure())
